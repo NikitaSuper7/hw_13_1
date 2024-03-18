@@ -7,7 +7,7 @@ def main():
         """Product category of our store."""
         labels: set
         description: str
-        products: set
+        products: list
 
         products = []
         labels = set()
@@ -25,8 +25,7 @@ def main():
             self.description = description
             self.products = products
 
-            add_to_products = [Category.products.append(product) for product in self.products if
-                               product not in self.products]
+            add_to_products = [Category.products.append(product) for product in self.products]
             Category.labels.add(self.label)
 
         def __repr__(self):
@@ -62,7 +61,6 @@ def main():
                 products.append(product['name'])
                 products[-1] = Product(product['name'], product['description'], product['price'], product['quantity'])
         categories = list(dict.fromkeys(categories))  # возвращает уникальные элементы списка, сохраняя порядок.
-        products = list(dict.fromkeys(products))
 
         return (categories, products)
 
