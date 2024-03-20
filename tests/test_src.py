@@ -24,8 +24,10 @@ def test_products(products):
 def test_category(category):
     assert category.label =='Fruits'
     assert category.description == 'sweet fruits'
+    assert category.count_uniq_labels == 1
 
 def test_make_prod():
     assert make_products(operations_path)[0][0].label == 'Смартфоны'
     assert make_products(operations_path)[0][1].label == 'Телевизоры'
     assert make_products(operations_path)[1][1].label == 'Iphone 15'
+    assert make_products(operations_path)[0][1].count_uniq_labels == 3

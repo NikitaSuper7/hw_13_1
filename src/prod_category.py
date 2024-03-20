@@ -10,10 +10,10 @@ class Category:
 
     products = []
     labels = set()
-
     cnt_products = len(products)
 
     count_uniq_labels = len(labels)
+
 
     def __init__(self, label, description, products):
         self.label = label
@@ -22,6 +22,8 @@ class Category:
 
         add_to_products = [Category.products.append(product) for product in self.products]
         Category.labels.add(self.label)
+        Category.count_uniq_labels = len(Category.labels)
+        Category.cnt_products = len(products)
 
     def __repr__(self):
         return f"category_class - {self.label}"
@@ -57,5 +59,4 @@ def make_products(path):
     categories = list(dict.fromkeys(categories))  # возвращает уникальные элементы списка, сохраняя порядок.
 
     return (categories, products)
-
 
