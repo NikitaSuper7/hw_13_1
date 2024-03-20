@@ -1,5 +1,6 @@
 import pytest
-from src.hw_13_1 import Product, Category
+from src.prod_category import Product, Category, make_products
+from config import operations_path
 
 
 @pytest.fixture
@@ -23,3 +24,8 @@ def test_products(products):
 def test_category(category):
     assert category.label =='Fruits'
     assert category.description == 'sweet fruits'
+
+def test_make_prod():
+    assert make_products(operations_path)[0][0].label == 'Смартфоны'
+    assert make_products(operations_path)[0][1].label == 'Телевизоры'
+    assert make_products(operations_path)[1][1].label == 'Iphone 15'
