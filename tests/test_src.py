@@ -15,6 +15,11 @@ def category(products):
     cat_1 = Category('Fruits', 'sweet fruits', products)
     return cat_1
 
+@pytest.fixture
+def make_prod():
+    make_1 = make_products(operations_path)
+    return make_1
+
 def test_products(products):
     assert products[0].label == 'apple'
     assert products[1].description == 'very healthy'
@@ -26,7 +31,7 @@ def test_category(category):
     assert category.description == 'sweet fruits'
     assert category.count_uniq_labels == 1
 
-def test_make_prod():
+def test_make_prod(make_prod):
     assert make_products(operations_path)[0][0].label == 'Смартфоны'
     assert make_products(operations_path)[0][1].label == 'Телевизоры'
     assert make_products(operations_path)[1][1].label == 'Iphone 15'
