@@ -38,7 +38,7 @@ class Category:
         information = []
         for product in self.__products:
             information.append(f"{product['name']}, стоимость - {product['price']} руб.,Остаток - {product['quantity']}")
-        return information
+        return '\n'.join(information)
 
     def __repr__(self):
         return f"category_class - {self.name}"
@@ -102,3 +102,7 @@ def make_products(path):
     categories = list(dict.fromkeys(categories))  # возвращает уникальные элементы списка, сохраняя порядок.
 
     return (categories, products)
+
+test = make_products(operations_path)
+
+print(test[0][0].all_products)
