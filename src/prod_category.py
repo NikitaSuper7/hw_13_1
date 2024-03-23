@@ -78,6 +78,10 @@ class Product:
     def price(self, new_price):
         if new_price > self.__price and new_price is float:
             self.__price = new_price
+        elif new_price <= self.__price:
+            question = input("Are you sure that you want to reduce a price?(y/n) ").strip().lower()
+            if question == 'y':
+                self.__price = new_price
         else:
             print("You put incorrect price")
 
