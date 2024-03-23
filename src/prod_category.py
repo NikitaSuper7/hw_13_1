@@ -4,19 +4,19 @@ from config import operations_path  # - Здесь находится файл �
 
 class Category:
     """Product category of our store."""
-    labels: str
+    names: str
     description: str
     products: list
     categories = set()
     count_categories = 0
     count_products = 0
 
-    def __init__(self, label: str, description: str, products: list):
+    def __init__(self, name: str, description: str, products: list):
         """Инициализирует объект класса Category."""
-        self.label = label
+        self.name = name
         self.description = description
         self.__products = products
-        Category.categories.add(self.label)
+        Category.categories.add(self.name)
 
         Category.count_categories = len(Category.categories)
         Category.count_products += len(self.__products)
@@ -25,7 +25,7 @@ class Category:
     def pud_products(self, products):
         """Добавляет продукты в атрибут класса - products."""
         for product in products:
-            product = {'name': product.label,
+            product = {'name': product.name,
                        'description': product.description,
                        'price': product.price,
                        'quantity': product.amount}
@@ -41,30 +41,30 @@ class Category:
         return information
 
     def __repr__(self):
-        return f"category_class - {self.label}"
+        return f"category_class - {self.name}"
 
 
 class Product:
     """product that we have in our store."""
-    label: str
+    name: str
     description: str
     price: float
     amount: int
 
-    def __init__(self, label, description, price, amount):
-        self.label = label
+    def __init__(self, name, description, price, amount):
+        self.name = name
         self.description = description
         self.__price = price
         self.amount = amount
 
     def __repr__(self):
-        return f"product_class - {self.label}"
+        return f"product_class - {self.name}"
 
     @classmethod
     def build_product(cls, dictionary: dict):
         """Создает объект класса Product из словаря.
         ключи:
-        label - название продукта (str)
+        name - название продукта (str)
         description - описание (str).
         price - цена (float),.
         amount - количество (int)"""

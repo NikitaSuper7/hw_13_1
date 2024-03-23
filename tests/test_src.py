@@ -43,21 +43,21 @@ def prod_price_setter(make_prod):
 
 
 def test_products(products):
-    assert products[0].label == 'apple'
+    assert products[0].name == 'apple'
     assert products[1].description == 'very healthy'
-    assert products[2].label == 'banana'
+    assert products[2].name == 'banana'
     assert products[2].amount == 20
 
 
 def test_category(category):
-    assert category.label == 'Fruits'
+    assert category.name == 'Fruits'
     assert category.description == 'sweet fruits'
 
 
 def test_make_prod(make_prod):
-    assert make_products(operations_path)[0][0].label == 'Смартфоны'
-    assert make_products(operations_path)[0][1].label == 'Телевизоры'
-    assert make_products(operations_path)[1][1].label == 'Iphone 15'
+    assert make_products(operations_path)[0][0].name == 'Смартфоны'
+    assert make_products(operations_path)[0][1].name == 'Телевизоры'
+    assert make_products(operations_path)[1][1].name == 'Iphone 15'
 
 
 def test_prod_price(prod_price_setter):
