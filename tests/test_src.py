@@ -46,7 +46,7 @@ def test_products(products):
     assert products[0].name == 'apple'
     assert products[1].description == 'very healthy'
     assert products[2].name == 'banana'
-    assert products[2].amount == 20
+    assert products[2].quantity == 20
 
 
 def test_category(category):

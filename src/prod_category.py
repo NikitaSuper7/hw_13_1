@@ -28,7 +28,7 @@ class Category:
             product = {'name': product.name,
                        'description': product.description,
                        'price': product.price,
-                       'quantity': product.amount}
+                       'quantity': product.quantity}
             self.__products.append(product)
             Category.count_products += 1
         return self.__products
@@ -49,13 +49,13 @@ class Product:
     name: str
     description: str
     price: float
-    amount: int
+    quantity: int
 
-    def __init__(self, name, description, price, amount):
+    def __init__(self, name, description, price, quantity):
         self.name = name
         self.description = description
         self.__price = price
-        self.amount = amount
+        self.quantity = quantity
 
     def __repr__(self):
         return f"product_class - {self.name}"
@@ -67,7 +67,7 @@ class Product:
         name - название продукта (str)
         description - описание (str).
         price - цена (float),.
-        amount - количество (int)"""
+        quantity - количество (int)"""
         return cls(**dictionary)
 
     @property
