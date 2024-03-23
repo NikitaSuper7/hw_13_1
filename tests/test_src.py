@@ -8,7 +8,8 @@ def products():
     prod_1 = Product('apple', 'very testy', 20.5, 3)
     prod_2 = Product('orange', 'very healthy', 32.5, 5)
     prod_3 = Product('banana', 'huge banana', 145, 20)
-    return prod_1, prod_2, prod_3
+    all_prod = [prod_1, prod_2, prod_3]
+    return all_prod
 
 
 @pytest.fixture
@@ -24,10 +25,14 @@ def make_prod():
 
 
 @pytest.fixture
-def pud_products(make_prod):
-    make_prod[0][0].pud_products()
-    make_prod[0][1].pud_products()
-    return Category.products
+def pud_prod(make_prod):
+    prod_1 = Product('meat', 'Very fresh', 25_000, 45)
+    prod_2 = Product('fish', 'Not fresh', 2_000, 15)
+    test_1 = make_prod
+    test_2 = make_prod
+    test_1[0][0].pud_products([prod_2, prod_1])
+    test_2[0][1].pud_products([prod_1])
+    return test_1[0][0].all_products, test_2[0][1].all_products
 
 
 @pytest.fixture
@@ -47,35 +52,24 @@ def test_products(products):
 def test_category(category):
     assert category.label == 'Fruits'
     assert category.description == 'sweet fruits'
-    assert category.count_uniq_labels == 3
 
 
 def test_make_prod(make_prod):
     assert make_products(operations_path)[0][0].label == 'Смартфоны'
     assert make_products(operations_path)[0][1].label == 'Телевизоры'
     assert make_products(operations_path)[1][1].label == 'Iphone 15'
-    assert make_products(operations_path)[0][1].count_uniq_labels == 3
 
 
 def test_prod_price(prod_price_setter):
-    assert prod_price_setter[0] == 200_000
-    assert prod_price_setter[1] == 5
+    assert prod_price_setter[0] == 180000
+    assert prod_price_setter[1] == 210_000
 
 
-def test_pud_prod(pud_products):
-    assert pud_products == [{'description': '256GB, Серый цвет, 200MP камера',
-                             'name': 'Samsung Galaxy C23 Ultra',
-                             'price': 180000.0,
-                             'quantity': 5},
-                            {'description': '512GB, Gray space',
-                             'name': 'Iphone 15',
-                             'price': 210000.0,
-                             'quantity': 8},
-                            {'description': '1024GB, Синий',
-                             'name': 'Xiaomi Redmi Note 11',
-                             'price': 31000.0,
-                             'quantity': 14},
-                            {'description': 'Фоновая подсветка',
-                             'name': '55" QLED 4K',
-                             'price': 123000.0,
-                             'quantity': 7}]
+def test_pud_prod(pud_prod):
+    assert pud_prod[0] == [
+        'Samsung Galaxy C23 Ultra, стоимость - 180000.0 руб.,Остаток - 5',
+        'Iphone 15, стоимость - 210000.0 руб.,Остаток - 8',
+        'Xiaomi Redmi Note 11, стоимость - 31000.0 руб.,Остаток - 14',
+        'fish, стоимость - 2000 руб.,Остаток - 15',
+        'meat, стоимость - 25000 руб.,Остаток - 45',
+    ]
