@@ -21,27 +21,24 @@ class Category:
         Category.count_categories = len(Category.categories)
         Category.count_products += len(self.__products)
 
-
-    def pud_products(self, products):
+    def pud_products(self, products: list):
         """Добавляет продукты в атрибут класса - products."""
         for product in products:
-            product = {'name': product.name,
-                       'description': product.description,
-                       'price': product.price,
-                       'quantity': product.quantity}
             self.__products.append(product)
-            Category.count_products += 1
-        return self.__products
 
     @property
     def all_products(self):
         information = []
         for product in self.__products:
-            information.append(f"{product['name']}, стоимость - {product['price']} руб.,Остаток - {product['quantity']}")
+            information.append(
+                f"{product.name}, стоимость - {product.price} руб.,Остаток - {product.quantity}")
         return '\n'.join(information)
 
     def __repr__(self):
-        return f"category_class - {self.name}"
+        return f"category_class_{self.name}"
+
+    def __str__(self):
+        return f"{self.name}"
 
 
 class Product:
@@ -58,7 +55,7 @@ class Product:
         self.quantity = quantity
 
     def __repr__(self):
-        return f"product_class - {self.name}"
+        return f"product_class_{self.name}"
 
     @classmethod
     def build_product(cls, dictionary: dict):
@@ -78,7 +75,7 @@ class Product:
     def price(self, new_price):
         if new_price > self.__price and new_price is float:
             self.__price = new_price
-        elif new_price <= self.__price:
+        elif 0 < new_price <= self.__price:
             question = input("Are you sure that you want to reduce a price?(y/n) ").strip().lower()
             if question == 'y':
                 self.__price = new_price
@@ -92,17 +89,37 @@ def make_products(path):
         content = f.read()
         json_file = json.loads(content)
     categories = []
-    products = []
     for category in json_file:
         categories.append(category['name'])
         categories[-1] = Category(category['name'], category['description'], category['products'])
-        for product in category['products']:
-            products.append(product['name'])
-            products[-1] = Product(product['name'], product['description'], product['price'], product['quantity'])
-    categories = list(dict.fromkeys(categories))  # возвращает уникальные элементы списка, сохраняя порядок.
 
-    return (categories, products)
+    categories = dict.fromkeys(categories)
+    for key in categories.keys():
+        categories[key] = []
 
-test = make_products(operations_path)
+    for category in json_file:
+        for key, value in categories.items():
+            if key.name == category['name']:
+                categories[key].extend(category['products'])
+                for product in range(len(categories[key])):
+                    categories[key][product] = Product(categories[key][product]['name'],
+                                                       categories[key][product]['description'],
+                                                       categories[key][product]['price'],
+                                                       categories[key][product]['quantity'])
 
-print(test[0][0].all_products)
+
+    return categories
+
+
+# test = make_products(operations_path)
+# print(test)
+#
+# prod_1 = Product('orange', 'So fresh', 20.5, 45)
+# prod_2 = Product('apple', 'very testy', 45, 20)
+# test_1 = Category('test', 'check_test', [prod_1, prod_2])
+# print(test_1.all_products)
+#
+# test_2 = list(test.keys())
+# test_2[0].pud_products(products=[prod_1, prod_2])
+#
+# print(test_2[0].all_products) # выдает ошибку
