@@ -89,37 +89,16 @@ def make_products(path):
         content = f.read()
         json_file = json.loads(content)
     categories = []
-    for category in json_file:
-        categories.append(category['name'])
-        categories[-1] = Category(category['name'], category['description'], category['products'])
-
-    categories = dict.fromkeys(categories)
-    for key in categories.keys():
-        categories[key] = []
-
-    for category in json_file:
-        for key, value in categories.items():
-            if key.name == category['name']:
-                categories[key].extend(category['products'])
-                for product in range(len(categories[key])):
-                    categories[key][product] = Product(categories[key][product]['name'],
-                                                       categories[key][product]['description'],
-                                                       categories[key][product]['price'],
-                                                       categories[key][product]['quantity'])
-
-
+    for category_info in json_file:
+        products = []
+        for product_info in category_info['products']:
+            product = Product.build_product(product_info)
+            products.append(product)
+        category = Category(category_info['name'], category_info['description'], products)
+        categories.append(category)
     return categories
 
 
-# test = make_products(operations_path)
-# print(test)
-#
-# prod_1 = Product('orange', 'So fresh', 20.5, 45)
-# prod_2 = Product('apple', 'very testy', 45, 20)
-# test_1 = Category('test', 'check_test', [prod_1, prod_2])
-# print(test_1.all_products)
-#
-# test_2 = list(test.keys())
-# test_2[0].pud_products(products=[prod_1, prod_2])
-#
-# print(test_2[0].all_products) # выдает ошибку
+
+
+
