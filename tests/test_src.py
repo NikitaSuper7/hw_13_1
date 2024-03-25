@@ -30,8 +30,8 @@ def pud_prod(make_prod):
     prod_2 = Product('fish', 'Not fresh', 2_000, 15)
     test_1 = make_prod
     test_2 = make_prod
-    test_1[0].pud_products([prod_2, prod_1])
-    test_2[1].pud_products([prod_1])
+    test_1[0].pud_products(prod_2)
+    test_2[1].pud_products(prod_1)
     return test_1[0].all_products, test_2[1].all_products
 
 
@@ -72,5 +72,4 @@ def test_pud_prod(pud_prod):
     assert pud_prod[0] == """Samsung Galaxy C23 Ultra, стоимость - 180000.0 руб.,Остаток - 5
 Iphone 15, стоимость - 210000.0 руб.,Остаток - 8
 Xiaomi Redmi Note 11, стоимость - 31000.0 руб.,Остаток - 14
-fish, стоимость - 2000 руб.,Остаток - 15
-meat, стоимость - 25000 руб.,Остаток - 45"""
+fish, стоимость - 2000 руб.,Остаток - 15"""

@@ -21,10 +21,9 @@ class Category:
         Category.count_categories = len(Category.categories)
         Category.count_products += len(self.__products)
 
-    def pud_products(self, products: list):
+    def pud_products(self, products: object):
         """Добавляет продукты в атрибут класса - products."""
-        for product in products:
-            self.__products.append(product)
+        self.__products.append(products)
 
     @property
     def all_products(self):
@@ -100,7 +99,10 @@ def make_products(path):
 
 
 prod_1 = Product('orange', 'so tasty', 75, 12)
-print(prod_1.price)
+test = make_products(operations_path)
 
-print(prod_1.price)
+test[0].pud_products(prod_1)
 
+print(test[0].all_products)
+
+print(type(test[0]))
