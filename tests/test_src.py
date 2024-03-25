@@ -30,16 +30,18 @@ def pud_prod(make_prod):
     prod_2 = Product('fish', 'Not fresh', 2_000, 15)
     test_1 = make_prod
     test_2 = make_prod
-    test_1[0][0].pud_products([prod_2, prod_1])
-    test_2[0][1].pud_products([prod_1])
-    return test_1[0][0].all_products, test_2[0][1].all_products
+    test_1[0].pud_products([prod_2, prod_1])
+    test_2[1].pud_products([prod_1])
+    return test_1[0].all_products, test_2[1].all_products
 
 
 @pytest.fixture
-def prod_price_setter(make_prod):
-    make_prod[1][0].product_price = 200_000
-    make_prod[1][1].product_price = 5
-    return make_prod[1][0].price, make_prod[1][1].price
+def prod_price_setter():
+    prod_1 = Product('orange', 'so tasty', 75, 12)
+    prod_2 = Product('apple', 'green sort', 32, 5)
+    prod_1.price = 80
+    prod_2.price = 30
+    return prod_1.price, prod_2.price
 
 
 def test_products(products):
@@ -55,21 +57,20 @@ def test_category(category):
 
 
 def test_make_prod(make_prod):
-    assert make_products(operations_path)[0][0].name == 'Смартфоны'
-    assert make_products(operations_path)[0][1].name == 'Телевизоры'
-    assert make_products(operations_path)[1][1].name == 'Iphone 15'
+    assert make_products(operations_path)[0].name == 'Смартфоны'
+    assert make_products(operations_path)[1].name == 'Телевизоры'
+    assert make_products(operations_path)[
+               1].description == 'Современный телевизор, который позволяет наслаждаться просмотром, станет вашим другом и помощником'
 
 
 def test_prod_price(prod_price_setter):
-    assert prod_price_setter[0] == 180000
-    assert prod_price_setter[1] == 210_000
+    assert prod_price_setter[0] == 80
+    assert prod_price_setter[1] == 32
 
 
 def test_pud_prod(pud_prod):
-    assert pud_prod[0] == [
-        'Samsung Galaxy C23 Ultra, стоимость - 180000.0 руб.,Остаток - 5',
-        'Iphone 15, стоимость - 210000.0 руб.,Остаток - 8',
-        'Xiaomi Redmi Note 11, стоимость - 31000.0 руб.,Остаток - 14',
-        'fish, стоимость - 2000 руб.,Остаток - 15',
-        'meat, стоимость - 25000 руб.,Остаток - 45',
-    ]
+    assert pud_prod[0] == """Samsung Galaxy C23 Ultra, стоимость - 180000.0 руб.,Остаток - 5
+Iphone 15, стоимость - 210000.0 руб.,Остаток - 8
+Xiaomi Redmi Note 11, стоимость - 31000.0 руб.,Остаток - 14
+fish, стоимость - 2000 руб.,Остаток - 15
+meat, стоимость - 25000 руб.,Остаток - 45"""

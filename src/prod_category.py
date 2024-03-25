@@ -73,7 +73,7 @@ class Product:
 
     @price.setter
     def price(self, new_price):
-        if new_price > self.__price and new_price is float:
+        if new_price > self.__price and new_price > 0:
             self.__price = new_price
         elif 0 < new_price <= self.__price:
             question = input("Are you sure that you want to reduce a price?(y/n) ").strip().lower()
@@ -99,6 +99,8 @@ def make_products(path):
     return categories
 
 
+prod_1 = Product('orange', 'so tasty', 75, 12)
+print(prod_1.price)
 
-
+print(prod_1.price)
 
