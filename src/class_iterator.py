@@ -1,5 +1,5 @@
-from category import Category
-from products import Product
+from src.category import Category
+from src.products import Product
 class Iter:
     def __init__(self, category: Category):
         """Принимает объект класса Category"""
@@ -17,12 +17,3 @@ class Iter:
         else:
             raise StopIteration
 
-
-# prod_1 = Product('orange', 'very testy', 35, 20)
-# prod_2 = Product('apple', 'so fresh', 730, 21)
-#
-# cat_1 = Category('test', 'test_test', [prod_2, prod_1])
-#
-# r = Iter(cat_1)
-#
-# print(list(r))

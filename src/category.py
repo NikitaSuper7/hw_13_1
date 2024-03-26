@@ -1,4 +1,4 @@
-from products import Product
+from src.products import Product
 
 class Category:
     """Product category of our store."""

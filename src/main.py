@@ -1,7 +1,7 @@
 import json
 from config import operations_path
-from category import Category
-from products import Product
+from src.category import Category
+from src.products import Product
 
 def make_products(path):
     """Создает объекты классов Category и Products из файла json."""
