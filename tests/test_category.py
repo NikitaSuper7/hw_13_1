@@ -24,7 +24,8 @@ def pud_prod():
     prod_2 = Product('fish', 'Not fresh', 2_000, 15)
     test_1 = Category('food', 'all about food', [prod_1, prod_2])
     test_1.pud_products(prod_2)
-    return test_1.all_products
+    test_no = 'test_str'
+    return test_1, test_no
 
 
 def test_category(category):
@@ -33,5 +34,9 @@ def test_category(category):
 
 
 def test_pud_prod(pud_prod):
-    assert pud_prod == ['meat, стоимость - 25000 руб.,Остаток - 45', 'fish, стоимость - 2000 руб.,Остаток - 15',
+    assert pud_prod[0].all_products == ['meat, стоимость - 25000 руб.,Остаток - 45', 'fish, стоимость - 2000 руб.,Остаток - 15',
                         'fish, стоимость - 2000 руб.,Остаток - 15']
+    with pytest.raises(TypeError):
+        pud_prod[0].pud_products(pud_prod[1])
+
+

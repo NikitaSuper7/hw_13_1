@@ -25,7 +25,7 @@ class Category:
             self.__products.append(products)
             Category.count_products += 1
         else:
-            raise "You cant pud this product"
+            raise TypeError ("You cant pud this product")
 
     @property
     def all_products(self):

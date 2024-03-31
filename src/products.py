@@ -44,7 +44,7 @@ class Product:
         if type(self) == type(other):
             return self.__price * self.quantity + other.__price * other.quantity
         else:
-            raise 'Можно складывать только товары принадлежащие к одному классу.'
+            raise TypeError('Можно складывать только товары принадлежащие к одному классу.')
 
     def __str__(self):
         return f"{self.name}, стоимость - {self.price} руб.,Остаток - {self.quantity}"

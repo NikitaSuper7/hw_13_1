@@ -1,6 +1,5 @@
 
 import pytest
-# from src.products import Product
 from src.phone import Phone
 
 @pytest.fixture
@@ -15,5 +14,7 @@ def phone():
 
 def test_phone(phone):
     assert phone[0].name == 'iphone_15'
+    assert phone[1].color == 'blue'
+    assert phone[1].ram == 128
 
 
