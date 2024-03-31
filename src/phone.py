@@ -20,10 +20,3 @@ class Phone(Product):
         self.color = color
         self.ram = ram
 
-
-emp_1 = Product('test_1', 'test_1', 255, 2)
-phone_1 = Phone('iphone_15', 'the future of phones', 125_000, 112, 'green',
-                255, '15_pro', 512)
-
-print(type(emp_1))
-print(type(phone_1))
