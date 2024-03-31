@@ -1,4 +1,3 @@
-
 class Product:
     """product that we have in our store."""
     name: str
@@ -6,11 +5,12 @@ class Product:
     price: float
     quantity: int
 
-    def __init__(self, name, description, price, quantity):
+    def __init__(self, name: str, description: str, price: float, quantity: int, color: str = None):
         self.name = name
         self.description = description
         self.__price = price
         self.quantity = quantity
+        self.color = color
 
     def __repr__(self):
         return f"product_class_{self.name}"
@@ -41,7 +41,10 @@ class Product:
             print("You put incorrect price")
 
     def __add__(self, other):
-        return self.__price * self.quantity + other.__price * other.quantity
+        if type(self) == type(other):
+            return self.__price * self.quantity + other.__price * other.quantity
+        else:
+            raise 'Можно складывать только товары принадлежащие к одному классу.'
 
     def __str__(self):
         return f"{self.name}, стоимость - {self.price} руб.,Остаток - {self.quantity}"
