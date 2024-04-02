@@ -21,7 +21,7 @@ class Category:
 
     def pud_products(self, products):
         """Добавляет один продукт, только если принадлежит классу Product."""
-        if isinstance(products, Product) or issubclass(products, Product):
+        if isinstance(products, Product):
             self.__products.append(products)
             Category.count_products += 1
         else:

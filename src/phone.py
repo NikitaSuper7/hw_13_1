@@ -17,6 +17,6 @@ class Phone(Product):
         super().__init__(name, description, price, quantity, color)
 
         self.performance = performance
-        self.color = color
         self.ram = ram
+        self.model = model
 
