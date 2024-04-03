@@ -1,7 +1,8 @@
 from src.products import Product
+from src.mixin_name import MixinName
 
 
-class Phone(Product):
+class Phone(Product, MixinName):
     """продукты категории 'Смартфоны'. """
     name: str
     description: str
@@ -20,3 +21,7 @@ class Phone(Product):
         self.ram = ram
         self.model = model
 
+
+test_1 = Phone('iphone_15', 'best_one', 125_000, 14, 'blue', 255,
+               'test_x_1', 512)
+print(repr(test_1))

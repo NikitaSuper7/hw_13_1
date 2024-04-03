@@ -1,4 +1,8 @@
-class Product:
+from src.abstract_product import AbstrProduct
+from mixin_name import MixinName
+
+
+class Product(AbstrProduct, MixinName):
     """product that we have in our store."""
     name: str
     description: str
@@ -12,8 +16,8 @@ class Product:
         self.quantity = quantity
         self.color = color
 
-    def __repr__(self):
-        return f"product_class_{self.name}"
+    # def __repr__(self):
+    #     return f"product_class_{self.name}"
 
     @classmethod
     def build_product(cls, dictionary: dict):
@@ -48,3 +52,8 @@ class Product:
 
     def __str__(self):
         return f"{self.name}, стоимость - {self.price} руб.,Остаток - {self.quantity}"
+
+
+# test_1 = Product('test_1', 'test_test_1', 125, 12)
+#
+# print(repr(test_1))
