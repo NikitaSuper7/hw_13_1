@@ -1,5 +1,18 @@
 class MixinName:
     """Миксин для вывода созданного объекта."""
 
+    def __init__(self, *args):
+
+        print(repr(self))
+
+
+
     def __repr__(self):
-        return f"{self.__class__.__name__}, ({self.name}, {self.description}, {self.price}, {self.quantity})"
+
+        object_attributes = ''
+
+        for k, v in self.__dict__.items():
+
+            object_attributes += f'{k}: {v},'
+
+        return f"создан объект со свойствами {object_attributes})"

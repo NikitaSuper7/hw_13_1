@@ -1,6 +1,8 @@
 from src.products import Product
+from src.abstract_category import AbstractCategory
 
-class Category:
+
+class Category(AbstractCategory):
     """Product category of our store."""
     names: str
     description: str
@@ -25,7 +27,7 @@ class Category:
             self.__products.append(products)
             Category.count_products += 1
         else:
-            raise TypeError ("You cant pud this product")
+            raise TypeError("You cant pud this product")
 
     @property
     def all_products(self):
@@ -33,7 +35,7 @@ class Category:
         for product in self.__products:
             information.append(
                 f"{product.name}, стоимость - {product.price} руб.,Остаток - {product.quantity}")
-        return information #'\n'.join(information)
+        return information  # '\n'.join(information)
 
     def __repr__(self):
         return f"category_class_{self.name}"

@@ -13,3 +13,8 @@ class AbstrProduct(ABC):
     @abstractmethod
     def __str__(self):
         pass
+
+    @abstractmethod
+    #@classmethod
+    def build_product(self, dict):
+        pass
