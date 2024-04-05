@@ -53,16 +53,3 @@ class Product(AbstrProduct, MixinName):
     def __str__(self):
         return f"{self.name}, стоимость - {self.price} руб.,Остаток - {self.quantity}"
 
-
-# test_1 = Product('test_1', 'test_test_1', 125, 12)
-#
-# dict_t = {'name': 'test_2',
-#         'description': 'test_2',
-#         'price': 333,
-#         'quantity': 3}
-#
-# print(repr(test_1))
-#
-# test_2 = test_1.build_product(dict_t)
-#
-# print(test_2.price)
