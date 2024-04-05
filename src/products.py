@@ -1,5 +1,5 @@
 from src.abstract_product import AbstrProduct
-from mixin_name import MixinName
+from src.mixin_name import MixinName
 
 
 class Product(AbstrProduct, MixinName):

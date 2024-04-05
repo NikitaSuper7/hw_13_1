@@ -1,7 +1,8 @@
 from src.products import Product
+from src.mixin_name import MixinName
 
 
-class GreenGrass(Product):
+class GreenGrass(Product, MixinName):
     """Класс для продуктов категории 'Трава зеленая'."""
 
     name: str

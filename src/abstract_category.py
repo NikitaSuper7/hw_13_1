@@ -7,9 +7,6 @@ class AbstractCategory(ABC):
     def __init__(self):
         pass
 
-    @abstractmethod
-    def __repr__(self):
-        pass
 
     @abstractmethod
     def pud_products(self, arg):
