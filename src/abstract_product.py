@@ -15,5 +15,5 @@ class AbstrProduct(ABC):
         pass
 
     @abstractmethod
-    def build_product(self, dict):
+    def build_product(self, dictionary):
         pass
