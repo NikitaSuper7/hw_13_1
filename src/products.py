@@ -16,9 +16,6 @@ class Product(AbstrProduct, MixinName):
         self.quantity = quantity
         self.color = color
 
-    # def __repr__(self):
-    #     return f"product_class_{self.name}"
-
     @classmethod
     def build_product(cls, dictionary: dict):
         """Создает объект класса Product из словаря.
@@ -52,4 +49,3 @@ class Product(AbstrProduct, MixinName):
 
     def __str__(self):
         return f"{self.name}, стоимость - {self.price} руб.,Остаток - {self.quantity}"
-

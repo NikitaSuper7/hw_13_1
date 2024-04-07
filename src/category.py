@@ -1,5 +1,6 @@
 from src.products import Product
 from src.abstract_category import AbstractCategory
+from src.add_exception import AddProductException, ScriptException
 
 
 class Category(AbstractCategory):
@@ -21,13 +22,37 @@ class Category(AbstractCategory):
         Category.count_categories = len(Category.categories)
         Category.count_products += len(self.__products)
 
-    def pud_products(self, products):
+    def pud_products(self, product):
         """Добавляет один продукт, только если принадлежит классу Product."""
-        if isinstance(products, Product):
-            self.__products.append(products)
-            Category.count_products += 1
+        try:
+            prod_test = ScriptException(product)
+        except AddProductException as e:
+            print(e)
+            print("You have to enter quantity > 0")
         else:
-            raise TypeError("You cant pud this product")
+            if isinstance(product, Product):
+                self.__products.append(product)
+                Category.count_products += 1
+                print("Product added successfully")
+            else:
+                raise TypeError("You cant pud this product")
+        finally:
+            print("The procedure 'add product' has finished")
+
+
+
+    def average_price(self):
+        """Возвращает среднюю стоимость товаров"""
+        sum_price = 0
+        for product in self.__products:
+            sum_price += product.price
+
+        try:
+            result = sum_price / len(self.__products)
+        except ZeroDivisionError:
+            return 0
+        else:
+            return round(result, 1)
 
     @property
     def all_products(self):
@@ -45,3 +70,11 @@ class Category(AbstractCategory):
 
     def __str__(self):
         return f"{self.name}, количество продуктов - {self.__len__()}"
+
+
+# if __name__ == '__main__':
+#     cat_1 = Category('test', 'teast', [])
+#     prod_1 = Product('test_p', 'test_p', 255, 1)
+#
+#     cat_1.pud_products(prod_1)
+
