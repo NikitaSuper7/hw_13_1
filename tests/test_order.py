@@ -1,6 +1,7 @@
 import pytest
 from src.order import Order
 from src.products import Product
+from src.add_exception import AddMuchProductException, AddProductException, ScriptException, MyException
 
 
 @pytest.fixture
@@ -12,18 +13,37 @@ def product():
 
 @pytest.fixture
 def order(product):
-    order_1 = Order(product[0])
+    order_1 = Order(product[0], 1)
     return order_1
+
+
 @pytest.fixture
 def pud_products_order(order, product):
-    order.pud_products(product[1])
+    order.pud_products(product[1], 1)
     return order
 
+
+@pytest.fixture
+def product_0_quan():
+    product_1 = Product('apple', 'very testy', 20.5, 0)
+    return product_1
+
+
 def test_orders(order):
-    assert order.name == 'apple'
+    assert order.count == 1
     assert order.price == 20.5
 
+
 def test_pud_products(pud_products_order):
-    assert pud_products_order.name == 'orange'
+    assert pud_products_order.count == 1
     assert pud_products_order.price == 32.5
 
+
+def test_rais_0_quan(product_0_quan):
+    with pytest.raises(AddProductException):
+        ScriptException(product_0_quan, 1)
+
+
+def test_rais_ro_much_prod(product):
+    with pytest.raises(AddMuchProductException):
+        ScriptException(product[0], 10)
