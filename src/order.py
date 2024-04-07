@@ -25,7 +25,7 @@ class Order(AbstractCategory):
             self.color = new_prod.color
             print("Product added successfully")
         finally:
-            print("The procedure 'add product' has finis")
+            print("The procedure 'add product' has finished")
 
 # if __name__ == '__main__':
 #
