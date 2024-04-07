@@ -72,9 +72,9 @@ class Category(AbstractCategory):
         return f"{self.name}, количество продуктов - {self.__len__()}"
 
 
-# if __name__ == '__main__':
-#     cat_1 = Category('test', 'teast', [])
-#     prod_1 = Product('test_p', 'test_p', 255, 1)
-#
-#     cat_1.pud_products(prod_1)
+if __name__ == '__main__':
+    cat_1 = Category('test', 'teast', [])
+    prod_1 = Product('test_p', 'test_p', 255, 0)
+
+    cat_1.pud_products(prod_1)
 
