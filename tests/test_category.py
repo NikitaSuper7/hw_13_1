@@ -54,7 +54,7 @@ def test_pud_prod(add_incorrect_prod):
 
 def test_raise_pud_product(pud_0_prod):
     with pytest.raises(AddProductException) as e:
-        test_1 = ScriptException(pud_0_prod[1])
+        pud_0_prod[0].pud_products(pud_0_prod[1])
 
 def test_pud_product_2(pud_product):
     assert pud_product.all_products == ['apple, стоимость - 20.5 руб.,Остаток - 3',

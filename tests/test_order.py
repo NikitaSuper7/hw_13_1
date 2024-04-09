@@ -41,9 +41,9 @@ def test_pud_products(pud_products_order):
 
 def test_rais_0_quan(product_0_quan):
     with pytest.raises(AddProductException):
-        ScriptException(product_0_quan, 1)
+        Order(product_0_quan, 1)
 
 
-def test_rais_ro_much_prod(product):
+def test_rais_to_much_prod(product, order):
     with pytest.raises(AddMuchProductException):
-        ScriptException(product[0], 10)
+        order.pud_products(product[0], 125)
