@@ -25,10 +25,11 @@ class Category(AbstractCategory):
     def pud_products(self, product):
         """Добавляет один продукт, только если принадлежит классу Product."""
         try:
-            prod_test = ScriptException(product)
+            ScriptException(product)
         except AddProductException as e:
             print(e)
             print("You have to enter quantity > 0")
+            raise AddProductException()
         else:
             if isinstance(product, Product):
                 self.__products.append(product)
